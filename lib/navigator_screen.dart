@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travel_proj/akun_screen.dart';
 import 'package:travel_proj/home_screen.dart';
 import 'package:travel_proj/order_screen.dart';
@@ -123,11 +124,19 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: getMenu(currentIndex),
-        bottomNavigationBar: buttomNavigationWidget(),
+    return Container(
+      color: Colors.white,
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light.copyWith(
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.dark),
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: getMenu(currentIndex),
+            bottomNavigationBar: buttomNavigationWidget(),
+          ),
+        ),
       ),
     );
   }
